@@ -5,19 +5,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Test Your Knowledge!</title>
-        <link rel="stylesheet" href=".Assets/Style/reset.css">
         <link rel="stylesheet" href="./Assets/Style/style.css">
     </head>
 
     <body>
-        <section> <!--container for high score button and timer-->
+        <header> <!--container for high score button and timer-->
+            <h1>Coding Quiz!</h1>
             <p>View High Scores</p>
-            <p>timer</p>
-        </section>
+        </header>
         
-        <section> <!--container for questions-->
-            <div>Question</div>
-            <div> <!--container for answer buttons-->
+        <section class="start-card"> <!--container for start button-->
+            <button id="startBtn">Click to Start!</button>
+        </section> 
+        
+        <section class="game-card"><!--container for timer and questions-->
+            <h2 id="timer"></h2>
+            <div id="question1"> <!--container for answer buttons-->
+                <div>Question</div>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+            </div>
+
+            <div id="question2"> <!--container for answer buttons-->
+                <div>Question</div>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+            </div>
+
+            <div id="question3"> <!--container for answer buttons-->
+                <div>Question</div>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+            </div>
+
+            <div id="question4"> <!--container for answer buttons-->
+                <div>Question</div>
                 <button></button>
                 <button></button>
                 <button></button>
