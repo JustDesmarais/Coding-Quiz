@@ -24,15 +24,15 @@ function setTime() {
 }
 
 var startBtn = document.getElementById('startBtn');
-var startCard = document.querySelector('start-card');
-var gameCard = document.querySelector('game-card');
-
+var startCard = document.querySelector('.start-card');
+var gameCard = document.querySelector('.game-card');
 
 startBtn.addEventListener('click', function() {
-    setTime();
     startCard.setAttribute('style', 'z-index: 1;');
-    gameCard.setAttribute('style', 'z-index: 2;');   
+    gameCard.setAttribute('style', 'z-index: 2;');
+    setTime();
 });
+
 
 // logic determining whether a question is wrong or right
 // data-set for each right and wrong response, <span> element updating the correct answer for wrong responses
