@@ -2,10 +2,46 @@
 
 // Selects element by
 var timeEl = document.getElementById("timer");
-
-var mainEl = document.getElementById("main");
-
 var timeLeft = 90;
+
+var questions = [
+    {
+        question: "Objects in JavaScript can contain which of the following?",
+        answers: [
+            {text: "Arrays",  correct: false}, 
+            {text: "Variables",  correct: false}, 
+            {text: "Functions",  correct: false}, 
+            {text: "All of the above",  correct: true}, 
+        ]
+    },
+    {
+        question: "What function is used to view the contents of a variable?",
+        answers: [
+            {text: "console.log",  correct: true}, 
+            {text: "addEventListener",  correct: false}, 
+            {text: "getElementByID",  correct: false}, 
+            {text: "querySelectorAll",  correct: false}, 
+        ]
+    },
+    {
+        question: "Which is NOT an example of a Primitive Data Type?",
+        answers: [
+            {text: "Number",  correct: false}, 
+            {text: "String",  correct: false}, 
+            {text: "Function",  correct: true}, 
+            {text: "Boolean",  correct: false}, 
+        ]
+    },
+    {
+        question: "What pair of functions can be used to add elements to the HTML from the JavaScript file?",
+        answers: [
+            {text: "append & return",  correct: false}, 
+            {text: "getElementByClass & setAttribute",  correct: false}, 
+            {text: "create & setAttribute",  correct: true}, 
+            {text: "create & append",  correct: false}, 
+        ]
+    },
+]
 
 function setTime() {
   // Sets interval in variable
@@ -33,6 +69,11 @@ startBtn.addEventListener('click', function() {
     setTime();
 });
 
+
+function initGame () {
+    timeLeft = 90;
+    startCard.setAttribute('style', 'z-index: 2');
+}
 
 // logic determining whether a question is wrong or right
 // data-set for each right and wrong response, <span> element updating the correct answer for wrong responses
