@@ -7,7 +7,8 @@
 body {
     background-color: lightskyblue;
     display: grid;
-    grid-template-columns: 1;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 header {
@@ -18,6 +19,7 @@ header {
 
 h1 {
     color: purple;
+    margin: 25px 25px 15px;
 }
 
 button {
@@ -26,6 +28,7 @@ button {
 
 .start-card {
     font-size: 36px;
+    height: auto;
     font-weight: bolder;
     text-align: center;
     display: flex;
@@ -39,6 +42,10 @@ button {
 }
 
 .game-card {
+    background-color: lightskyblue;
+    margin: 15px 0px 0px;
+    width: 100vw;
+    height: 75vh;
     display: grid;
     grid-template-columns: 25% auto;
     grid-row: 2;
@@ -56,23 +63,45 @@ button {
     grid-column: span 2;
 }
 
+.game-card h3 {
+    grid-row: 2;
+    grid-column: 2;
+    display: none;
+}
+
 #timer {
-    grid-row: 1;
+    text-align: center;
+    padding-top: 35%;
+    grid-row: span 2;
     grid-column: 1;
+    border-right: solid 2px;
 }
 
-#question1 {
-    z-index: 4;
-}
-
-#question2 {
-    z-index: 3;
-}
-
-#question3 {
+.question {
     z-index: 2;
+    margin: 25px 25px;
+    height: 100%;
+    padding-left: 25px;
 }
 
-#question4 {
-    z-index: 1;
+.question button {
+    padding: 3px 3px 3px 5px;
+    margin: 10px;
+    border-radius: 6px;
+    max-height: 75px;
+}
+
+#leaderBoard {
+    display: flex;
+    justify-content: center;
+    grid-row: 2;
+    grid-column: 1;
+    z-index: 0;
+}
+
+#startBtn {
+    height: 100px;
+    width: 20%;
+    align-self: center;
+    border-radius: 6px;
 }
