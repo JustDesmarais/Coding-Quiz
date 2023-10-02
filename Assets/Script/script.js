@@ -8,40 +8,43 @@ var questions = [
     {
         question: "Objects in JavaScript can contain which of the following?",
         answers: [
-            {text: "Arrays",  correct: false}, 
-            {text: "Variables",  correct: false}, 
-            {text: "Functions",  correct: false}, 
-            {text: "All of the above",  correct: true}, 
+            { text: "Arrays",  correct: false}, 
+            { text: "Variables",  correct: false}, 
+            { text: "Functions",  correct: false}, 
+            { text: "All of the above",  correct: true}, 
         ]
     },
     {
         question: "What function is used to view the contents of a variable?",
         answers: [
-            {text: "console.log",  correct: true}, 
-            {text: "addEventListener",  correct: false}, 
-            {text: "getElementByID",  correct: false}, 
-            {text: "querySelectorAll",  correct: false}, 
+            { text: "console.log",  correct: true}, 
+            { text: "addEventListener",  correct: false}, 
+            { text: "getElementByID",  correct: false}, 
+            { text: "querySelectorAll",  correct: false}, 
         ]
     },
     {
         question: "Which is NOT an example of a Primitive Data Type?",
         answers: [
-            {text: "Number",  correct: false}, 
-            {text: "String",  correct: false}, 
-            {text: "Function",  correct: true}, 
-            {text: "Boolean",  correct: false}, 
+            { text: "Number",  correct: false}, 
+            { text: "String",  correct: false}, 
+            { text: "Function",  correct: true}, 
+            { text: "Boolean",  correct: false}, 
         ]
     },
     {
         question: "What pair of functions can be used to add elements to the HTML from the JavaScript file?",
         answers: [
-            {text: "append & return",  correct: false}, 
-            {text: "getElementByClass & setAttribute",  correct: false}, 
-            {text: "create & setAttribute",  correct: true}, 
-            {text: "create & append",  correct: false}, 
+            { text: "append & return",  correct: false}, 
+            { text: "getElementByClass & setAttribute",  correct: false}, 
+            { text: "create & setAttribute",  correct: true}, 
+            { text: "create & append",  correct: false}, 
         ]
     },
-]
+];
+
+
+
 
 function setTime() {
   // Sets interval in variable
@@ -52,28 +55,56 @@ function setTime() {
     if(timeLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      // Calls function to create and append image
-      sendMessage();
     }
 
   }, 1000);
 }
 
+// Variables for start button action
 var startBtn = document.getElementById('startBtn');
 var startCard = document.querySelector('.start-card');
 var gameCard = document.querySelector('.game-card');
+var highScoreBtn = document.getElementById('view-high-score');
+
+var questionField = document.getElementById('query');
+var answerButtons = document.getElementById('answer-buttons');
+var response = document.getElementById('response');
+var nextBtn = document.getElementById("next-button");
+
+var questionsIndex = 0;
+var score = 0;
 
 startBtn.addEventListener('click', function() {
+    setTime();
     startCard.setAttribute('style', 'z-index: 1;');
     gameCard.setAttribute('style', 'z-index: 2;');
-    setTime();
+    questionsIndex = 0;
+    score = 0;
+    updateQuestion();
 });
+
+console.log(questions[1].answers[0].correct);
+
+function updateQuestion () {
+    var currentQuestion = questions[questionsIndex];
+    questionField.innerHTML = currentQuestion.question;
+    for (var i = 0; i < questions[questionsIndex].answers.length; i++ ) {
+        var answerBtn = document.createElement('button');
+        answerBtn.innerHTML = currentQuestion.answers[i].text;
+        answerButtons.appendChild(answerBtn); 
+    }
+};
+
+console.log(questions[0].question);
+
 
 
 function initGame () {
     timeLeft = 90;
     startCard.setAttribute('style', 'z-index: 2');
 }
+
+initGame();
 
 // logic determining whether a question is wrong or right
 // data-set for each right and wrong response, <span> element updating the correct answer for wrong responses

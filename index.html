@@ -11,7 +11,7 @@
     <body>
         <header> <!--container for high score button and timer-->
             <h1>Coding Quiz!</h1>
-            <p>View High Scores</p>
+            <p id="view-high-score">View High Scores</p>
         </header>
         
         <section class="start-card"> <!--container for start button-->
@@ -21,14 +21,19 @@
         <section class="game-card"><!--container for timer and questions-->
             <h2 id="timer"></h2>
             <div class="question"> <!--container for answer buttons-->
-                <div>Question</div>
-                <button>Answer 1</button>
-                <button>Answer 2</button>
-                <button>Answer 3</button>
-                <button>Answer 4</button>
+                <div id="query">Question</div>
+                <div id="answer-buttons">
+                    <button>Answer 1</button>
+                    <button>Answer 2</button>
+                    <button>Answer 3</button>
+                    <button>Answer 4</button>
+                </div>
+                <div id="response">
+                    <h3>Right!</h3>
+                    <button id="next-button">Next</button>
+                </div>
             </div>
-
-            <h3>Right or Wrong</h3>
+            
         </section>
 
         <section id="leaderBoard"> <!--container for high scores-->
