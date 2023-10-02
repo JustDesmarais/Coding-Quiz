@@ -74,6 +74,7 @@ var nextBtn = document.getElementById("next-button");
 var questionsIndex = 0;
 var score = 0;
 
+// event listener to start the game
 startBtn.addEventListener('click', function() {
     setTime();
     startCard.setAttribute('style', 'z-index: 1;');
@@ -83,20 +84,35 @@ startBtn.addEventListener('click', function() {
     updateQuestion();
 });
 
-console.log(questions[1].answers[0].correct);
-
+console.log(questions);
+// updates the content of the question cards
 function updateQuestion () {
     var currentQuestion = questions[questionsIndex];
+    response.setAttribute('style', 'display: none');
     questionField.innerHTML = currentQuestion.question;
     for (var i = 0; i < questions[questionsIndex].answers.length; i++ ) {
-        var answerBtn = document.createElement('button');
-        answerBtn.innerHTML = currentQuestion.answers[i].text;
-        answerButtons.appendChild(answerBtn); 
+        answerButtons.children[i].textContent = currentQuestion.answers[i].text;
+        if (currentQuestion.answers.correct) {
+        answerButtons.children[i].dataset.correct = currentQuestion.answers[i].correct;
     }
+    }
+    answerButtons.addEventListener('click', answerSel);
 };
 
-console.log(questions[0].question);
+function answerSel (event) {
+    var selectedAnswer = event.target;
+    var correctAnswer = selectedAnswer.dataset.correct === "true";
+    if (correctAnswer) {
+        response.firstChild.textContent = "Right!";
+    } else {
+        response.firstChild.textContent = "Wrong!";
+    }
+    response.setAttribute('style', 'display: block');
 
+}
+
+console.log(questions[0].question);
+console.log(questions[1].answers[0].correct);
 
 
 function initGame () {
