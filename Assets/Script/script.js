@@ -69,6 +69,8 @@ var highScoreBtn = document.getElementById('view-high-score');
 var questionField = document.getElementById('query');
 var answerButtons = document.getElementById('answer-buttons');
 var response = document.getElementById('response');
+var responseText = document.getElementsByTagName('h3');
+
 var nextBtn = document.getElementById("next-button");
 
 var questionsIndex = 0;
@@ -84,7 +86,6 @@ startBtn.addEventListener('click', function() {
     updateQuestion();
 });
 
-console.log(questions);
 // updates the content of the question cards
 function updateQuestion () {
     var currentQuestion = questions[questionsIndex];
@@ -92,27 +93,38 @@ function updateQuestion () {
     questionField.innerHTML = currentQuestion.question;
     for (var i = 0; i < questions[questionsIndex].answers.length; i++ ) {
         answerButtons.children[i].textContent = currentQuestion.answers[i].text;
-        if (currentQuestion.answers.correct) {
-        answerButtons.children[i].dataset.correct = currentQuestion.answers[i].correct;
+        answerButtons.children[i].setAttribute('data-type', currentQuestion.answers[i].correct);
+        answerButtons.children[i].addEventListener('click', answerSel);
     }
-    }
-    answerButtons.addEventListener('click', answerSel);
+    
 };
+
 
 function answerSel (event) {
     var selectedAnswer = event.target;
-    var correctAnswer = selectedAnswer.dataset.correct === "true";
-    if (correctAnswer) {
-        response.firstChild.textContent = "Right!";
+    var correctAnswer = selectedAnswer.getAttribute("data-type");
+    clearInterval(timerInterval);
+    if (correctAnswer === "true") {
+        response.firstElementChild.textContent = "Right!";
+        score += 1;
     } else {
-        response.firstChild.textContent = "Wrong!";
+        response.firstElementChild.textContent = "Wrong!";
+        timeLeft -= 10;
     }
     response.setAttribute('style', 'display: block');
-
 }
+
+function goToNext () {
+    response.setAttribute('style', 'display: none')
+    questionsIndex += 1;
+    updateQuestion();
+}
+
 
 console.log(questions[0].question);
 console.log(questions[1].answers[0].correct);
+console.log(score);
+console.log(questionsIndex);
 
 
 function initGame () {
