@@ -165,6 +165,7 @@ function goToNext () {
 
 function finalScreen () {
     var showScore = document.getElementById('score-text');
+    response.setAttribute('style', 'display: none');
     tallyScore();
     console.log(score);
     console.log(timeLeft);
