@@ -77,18 +77,22 @@ var endScreen = document.querySelector('.end-card');
 var initials = document.getElementById('int');
 var submitBtn = document.getElementById('submit-button');
 
-submitBtn.addEventListener ('click', function(event) {
+submitBtn.addEventListener ('click', intForm);
+
+function intForm (event) {
     event.preventDefault;
+
+    var intText = initials.value.trim();
+
+    if (intText === '') {
+        return;
+    };
+    
+    scoreData.push({intText, finalScore});
     storeScore();
-    initGame();
-});
+};
     
 function storeScore() {
-    var scoreData = {
-        initials: initials.value,
-        score: finalScore
-    }
-    
     localStorage.setItem('scoreData',  JSON.stringify(scoreData));
 }
 
@@ -96,6 +100,8 @@ function storeScore() {
 var questionsIndex = 0;
 var score = 0;
 var finalScore = 0;
+
+var scoreData = [];
 
 function tallyScore () {
     finalScore = score * timeLeft;
@@ -171,6 +177,13 @@ function initGame () {
     timeLeft = 90;
     startCard.setAttribute('style', 'z-index: 2');
     endScreen.setAttribute('style', 'z-index: 0');
-}
+    var storedScores = JSON.parse(localStorage.getItem('scoreData'));
+
+    if (storedScores !== null) {
+        scoreData = storedScores;
+      };
+
+    console.log(scoreData);
+};
 
 initGame();

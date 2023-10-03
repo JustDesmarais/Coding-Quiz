@@ -140,3 +140,18 @@ button:hover {
     max-width: 75px;
 }
 
+#scoreboard {
+    justify-content: center;
+}
+
+#scoreboard a {
+    margin: 20px;
+    text-align: center;
+}
+
+#leaderboard {
+    text-align: center;
+    color: purple;
+    font-size: 28px;
+    font-weight: 200%;
+}
