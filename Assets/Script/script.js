@@ -55,6 +55,7 @@ function setTime() {
     if(timeLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
+      finalScreen()
     }
 
   }, 1000);
