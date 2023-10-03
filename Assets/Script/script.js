@@ -75,11 +75,23 @@ var nextBtn = document.getElementById("next-button");
 var endScreen = document.querySelector('.end-card');
 
 var initials = document.getElementById('int');
+var submitBtn = document.getElementById('submit-button');
 
-var gameResults = {
-    initials: initials.value,
-    score: finalScore
+submitBtn.addEventListener ('click', function(event) {
+    event.preventDefault;
+    storeScore();
+    initGame();
+});
+    
+function storeScore() {
+    var scoreData = {
+        initials: initials.value,
+        score: finalScore
+    }
+    
+    localStorage.setItem('scoreData',  JSON.stringify(scoreData));
 }
+
 
 var questionsIndex = 0;
 var score = 0;
@@ -154,13 +166,7 @@ function finalScreen () {
     showScore.textContent = "You scored " + finalScore + ' points!';
 }
 
-console.log(questions[0].question);
-console.log(questions[1].answers[0].correct);
-console.log(score);
-console.log(questionsIndex);
-console.log(questions.length);
-
-
+// fucntion to reset game when page loads
 function initGame () {
     timeLeft = 90;
     startCard.setAttribute('style', 'z-index: 2');
@@ -168,12 +174,3 @@ function initGame () {
 }
 
 initGame();
-
-// logic determining whether a question is wrong or right
-// data-set for each right and wrong response, <span> element updating the correct answer for wrong responses
-
-// way to reduce the timer by 10 seconds after wrong questions
-// continue button resuming timer and going on to next question
-
-// log data function to locally store the results of the game
-// init function hen the site loads to pull locally stored results into high-score table
