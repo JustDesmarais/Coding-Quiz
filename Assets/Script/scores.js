@@ -13,7 +13,7 @@ function renderScores() {
         (p1, p2) => (p1.finalScore < p2.finalScore) ? 1: (p1.finalScore > p2.finalScore) ? -1: 0
     );
 
-    for (var i = 0; i < sortedScoresgit .length; i++) {
+    for (var i = 0; i < sortedScores.length; i++) {
       var scores = sortedScores[i];
     
       var li = document.createElement("li");
