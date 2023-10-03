@@ -37,18 +37,18 @@ var questions = [
         answers: [
             { text: "append & return",  correct: false}, 
             { text: "getElementByClass & setAttribute",  correct: false}, 
-            { text: "create & setAttribute",  correct: true}, 
-            { text: "create & append",  correct: false}, 
+            { text: "create & setAttribute",  correct: false}, 
+            { text: "create & append",  correct: true}, 
         ]
     },
 ];
 
 
-
+var timerInterval = 0;
 
 function setTime() {
   // Sets interval in variable
-  var timerInterval = setInterval(function() {
+  timerInterval = setInterval(function() {
     timeLeft--;
     timeEl.textContent = timeLeft + " seconds left";
 
@@ -70,8 +70,12 @@ var questionField = document.getElementById('query');
 var answerButtons = document.getElementById('answer-buttons');
 var response = document.getElementById('response');
 var responseText = document.getElementsByTagName('h3');
-
 var nextBtn = document.getElementById("next-button");
+
+var endScreen = document.querySelector('.end-card');
+
+var initials = document.getElementById('int');
+var finalScore = score*timeLeft;
 
 var questionsIndex = 0;
 var score = 0;
@@ -86,6 +90,14 @@ startBtn.addEventListener('click', function() {
     updateQuestion();
 });
 
+nextBtn.addEventListener('click', function () {
+    if (questionsIndex < questions.length) {
+        goToNext();
+    } else {
+        initGame();
+    }
+});
+
 // updates the content of the question cards
 function updateQuestion () {
     var currentQuestion = questions[questionsIndex];
@@ -96,28 +108,33 @@ function updateQuestion () {
         answerButtons.children[i].setAttribute('data-type', currentQuestion.answers[i].correct);
         answerButtons.children[i].addEventListener('click', answerSel);
     }
-    
 };
 
 
 function answerSel (event) {
     var selectedAnswer = event.target;
     var correctAnswer = selectedAnswer.getAttribute("data-type");
-    clearInterval(timerInterval);
     if (correctAnswer === "true") {
-        response.firstElementChild.textContent = "Right!";
         score += 1;
+        response.firstElementChild.textContent = "Right!";
     } else {
         response.firstElementChild.textContent = "Wrong!";
         timeLeft -= 10;
-    }
+    };
+    clearInterval(timerInterval);
+    timeEl.textContent = timeLeft + " seconds left";
     response.setAttribute('style', 'display: block');
 }
 
 function goToNext () {
-    response.setAttribute('style', 'display: none')
-    questionsIndex += 1;
-    updateQuestion();
+    if (questionsIndex < questions.length - 1) {
+        response.setAttribute('style', 'display: none')
+        setTime();
+        questionsIndex += 1;
+        updateQuestion();
+    } else {
+        endScreen.setAttribute('style', 'z-index: 3');
+    }
 }
 
 
@@ -125,11 +142,13 @@ console.log(questions[0].question);
 console.log(questions[1].answers[0].correct);
 console.log(score);
 console.log(questionsIndex);
+console.log(questions.length);
 
 
 function initGame () {
     timeLeft = 90;
     startCard.setAttribute('style', 'z-index: 2');
+    endScreen.setAttribute('style', 'z-index: 0');
 }
 
 initGame();
