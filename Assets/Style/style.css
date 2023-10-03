@@ -149,9 +149,17 @@ button:hover {
     text-align: center;
 }
 
+#scoreboard h2 {
+    text-align: center;
+    color: purple;
+    margin: 20px;
+    border-bottom: solid 1px;
+}
+
 #leaderboard {
     text-align: center;
     color: purple;
     font-size: 28px;
     font-weight: 200%;
+    margin: 20px;
 }
