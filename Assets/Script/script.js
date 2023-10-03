@@ -75,10 +75,19 @@ var nextBtn = document.getElementById("next-button");
 var endScreen = document.querySelector('.end-card');
 
 var initials = document.getElementById('int');
-var finalScore = score*timeLeft;
+
+var gameResults = {
+    initials: initials.value,
+    score: finalScore
+}
 
 var questionsIndex = 0;
 var score = 0;
+var finalScore = 0;
+
+function tallyScore () {
+    finalScore = score * timeLeft;
+}
 
 // event listener to start the game
 startBtn.addEventListener('click', function() {
@@ -93,9 +102,7 @@ startBtn.addEventListener('click', function() {
 nextBtn.addEventListener('click', function () {
     if (questionsIndex < questions.length) {
         goToNext();
-    } else {
-        initGame();
-    }
+    } 
 });
 
 // updates the content of the question cards
@@ -133,10 +140,19 @@ function goToNext () {
         questionsIndex += 1;
         updateQuestion();
     } else {
-        endScreen.setAttribute('style', 'z-index: 3');
+        finalScreen();
     }
 }
 
+function finalScreen () {
+    var showScore = document.getElementById('score-text');
+    tallyScore();
+    console.log(score);
+    console.log(timeLeft);
+    console.log(finalScore);
+    endScreen.setAttribute('style', 'z-index: 3');
+    showScore.textContent = "You scored " + finalScore + ' points!';
+}
 
 console.log(questions[0].question);
 console.log(questions[1].answers[0].correct);
